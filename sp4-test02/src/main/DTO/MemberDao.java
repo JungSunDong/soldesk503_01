@@ -20,4 +20,8 @@ public class MemberDao {
 	public Collection<MemberDTO> selectAll() {
 		return map.values();
 	}
+	
+	public void update(MemberDTO dto) {
+		map.put(dto.getEmail(),dto);
+	}
 }
