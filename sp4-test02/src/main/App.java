@@ -3,6 +3,8 @@ package main;
 import java.util.Scanner;
 
 import main.DTO.RegisterRequest;
+import main.service.ChangePasswordService;
+import main.service.MemberInfoPrinter;
 import main.service.MemberListPrinter;
 import main.service.MemberRegisterService;
 
@@ -12,10 +14,10 @@ public class App {
 		Scanner sc = new Scanner(System.in);
 
 		while (true) {
-			System.out.println("¸í·É¾î¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");
+			System.out.println("ëª…ë ¹ì–´ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”");
 			String command = sc.nextLine();
 			if (command.startsWith("new ")) {
-				// ÀÇÁ¸°´Ã¼[Å¬·¡½º ¾È¿¡ ÀÖ´Â °´Ã¼]{dependency object}
+				//ì˜ì¡´ê°ì²´ {dependency object}
 				String[] arg = command.split(" ");
 				if (arg.length != 5) {
 					printHelp();
@@ -30,13 +32,20 @@ public class App {
 				boolean bl = req.isPasswordEqualConfirmPassword();
 				
 				if (!bl) {
-					System.out.println("ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö¾Ê½À´Ï´Ù");
+					System.out.println("ê°€ì…ëœ íšŒì›ì…ë‹ˆë‹¤.");
 					continue;
 				}
 				// dependency object
 				MemberRegisterService mrs = new MemberRegisterService();
 				mrs.regist(req);
 			} else if (command.startsWith("change ")) {
+				String [] arg = command.split(" ");
+				if (arg.length != 4) {
+					printHelp();
+					continue;
+				}
+				ChangePasswordService changePwdSvc = new ChangePasswordService();
+				changePwdSvc.changePassword(arg[1],arg[2],arg[3]);
 
 			} else if (command.equals("list")) {
 				// dependency object
@@ -45,22 +54,31 @@ public class App {
 				
 
 			} else if (command.startsWith("info ")) {
+				String [] arg = command.split(" ");
+				if (arg.length !=2) {
+					printHelp();
+					continue;
+				}
+				MemberInfoPrinter infoPrinter = new MemberInfoPrinter();
+				infoPrinter.printMemberInfo(arg[1]);
 
 			} else if (command.equals("exit")) {
-
+				System.out.println("í”„ë¡œê·¸ë¨ì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤");
 				System.exit(0);
+			} else {
+				printHelp();
 			}
 		}
 	}
 
 	public static void printHelp() {
 		System.out.println();
-		System.out.println("¸í·É¾î »ç¿ë¹ı:");
-		System.out.println("new ÀÌ¸ŞÀÏ ÀÌ¸§ ¾ÏÈ£ ¾ÏÈ£È®ÀÎ");
-		System.out.println("change ÀÌ¸ŞÀÏ ÇöÀçºñ¹ø º¯°æºñ¹ø");
+		System.out.println("ëª…ë ¹ì–´ ì‚¬ìš©ë²•:");
+		System.out.println("new ì´ë©”ì¼ ì´ë¦„ ì•”í˜¸ ì•”í˜¸í™•ì¸");
+		System.out.println("change ì´ë©”ì¼ í˜„ì¬ì§€ë²ˆ ë³€ê²½ë¹„ë²ˆ");
 		System.out.println("list");
-		System.out.println("info ÀÌ¸ŞÀÏ");
-		System.out.println("ÇÁ·Î±×·¥ Á¾·á´Â exit");
+		System.out.println("info ì´ë©”ì¼");
+		System.out.println("í”„ë¡œê·¸ë¨ ì¢…ë£ŒëŠ” exit");
 	}
 
 }

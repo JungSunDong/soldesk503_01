@@ -44,8 +44,9 @@ public class MemberDTO {
 	public void changePassword(String oldPwd , String newPwd) {
 		if (password.equals(oldPwd)) {
 			password = newPwd;
+			System.out.println("비밀번호가 변경되었습니다");
 		}else {
-			System.out.println("�����й�ȣ�� Ʋ���ϴ�");
+			System.out.println("비밀번호가 다릅니다.");
 		}
 	}
 	

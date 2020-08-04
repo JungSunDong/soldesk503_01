@@ -5,7 +5,7 @@ import main.DTO.MemberDTO;
 public class MemberPrinter {
 
 	public void print(MemberDTO dto) {
-		System.out.printf("È¸¿øÁ¤º¸´Â : ¾ÆÀÌµğ = %d , ÀÌ¸ŞÀÏ = %s , ÀÌ¸§ = %s , µî·ÏÀÏ = %tF /n",dto.getId() , dto.getEmail() , dto.getName() , dto.getRegisterDate());
+		System.out.printf("íšŒì›ì •ë³´ : íšŒì› ì•„ì´ë”” = %d , íšŒì› ì´ë©”ì¼ = %s , íšŒì› ì´ë¦„ = %s , ë“±ë¡ë‚ ì§œ = %tF \n",dto.getId() , dto.getEmail() , dto.getName() , dto.getRegisterDate());
 		
 	}
 }

@@ -12,7 +12,7 @@ public class MemberListPrinter {
 	
 	public void printAll() {
 		Collection<MemberDTO> lists = memberDao.selectAll();
-		System.out.println("ÃÑ È¸¿ø ¼ö´Â : " + lists.size());
+		System.out.println("ì´ íšŒì›ìˆ˜ : " + lists.size());
 		for(MemberDTO dto : lists) {
 			printer.print(dto);
 		}
